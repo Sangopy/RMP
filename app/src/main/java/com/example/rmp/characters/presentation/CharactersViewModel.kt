@@ -26,4 +26,9 @@ class CharactersViewModel(private val charactersRepository: CharactersRepository
             characterDetails.postValue(charactersRepository.getCharacterDetails(characterID))
         }
     }
+
+
+
+
+
 }

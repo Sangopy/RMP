@@ -13,12 +13,11 @@ class CharactersFilterViewModel(private val charactersRepository: CharactersRepo
     private var charactersList = ArrayList<CharacterItems>()
     var genderFilter = mutableSetOf<String>()
     var spaciesFilter = mutableSetOf<String>()
-    var gender: Set<String> = setOf()
-    val spacies: Set<String> = setOf()
+    var gender: Set<String?> = setOf()
+    var spacies: Set<String?> = setOf()
 
     val filteredResultsNumber = MutableLiveData(0)
 
-    var requestCanceled: Boolean = false
     val isFilterApplied: Boolean
         get() = genderFilter.isNotEmpty() || spaciesFilter.isNotEmpty()
 
@@ -28,8 +27,8 @@ class CharactersFilterViewModel(private val charactersRepository: CharactersRepo
             charactersList = charactersRepository.getCharactersList()
         }
 
-        val charactersSpecies = charactersList.map { it.species }
-        val charactersGenders = charactersList.map { it.gender }
+        spacies = charactersList.map { it.species }.toSet()
+        gender = charactersList.map { it.gender }.toSet()
     }
 
     fun updateGenderFilter(gender: String, checked: Boolean) {
@@ -59,15 +58,11 @@ class CharactersFilterViewModel(private val charactersRepository: CharactersRepo
                 val genderFilter =
                     this@CharactersFilterViewModel.genderFilter.toSet()
 
-                val filterClosure: (List<String>, String?) -> Boolean = { genderList, spacies ->
+                val filterClosure: (String?, String?) -> Boolean = { gender, spacies ->
 
                     val genderResult = when {
-                        genderFilter.isEmpty() && (genderList.intersect(
-                            gender
-                        )
-                            .isNotEmpty() || genderList.isEmpty()) -> true
-                                (genderList.intersect(gender) == gender || genderList.isEmpty()) -> true
-                        genderList.intersect(genderFilter).isNotEmpty() -> true
+                        genderFilter.isEmpty() -> true
+                        genderFilter.contains(gender) -> true
                         else -> false
                     }
 
@@ -80,7 +75,11 @@ class CharactersFilterViewModel(private val charactersRepository: CharactersRepo
                     // Combine results
                     genderResult && spaciesResult
                 }
+                val filterCharacters = charactersList.filter { filterClosure(it.gender, it.species) }
 
+
+
+                filteredResultsNumber.postValue(filterCharacters.size)
 
             }
         }

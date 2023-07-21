@@ -33,10 +33,6 @@ class CharactersFragment(@LayoutRes layoutResId: Int = R.layout.fragment_charact
         return (binding.root)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribe()

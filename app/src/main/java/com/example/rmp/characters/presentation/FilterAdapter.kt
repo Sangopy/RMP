@@ -11,7 +11,7 @@ import com.example.rmp.databinding.CharacterFilterItemBinding
 
 class FilterAdapter(
     private val items: Set<String>,
-    private val selected: Set<String>,
+    private val selected: Set<String?>,
     private val isGenderFilter: Boolean,
     private val listener: CharactersFilterListener
 ) : RecyclerView.Adapter<FilterViewHolder>() {

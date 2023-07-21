@@ -11,7 +11,7 @@ import com.example.rmp.databinding.FragmentFilterBinding
 import org.koin.androidx.scope.ScopeFragment
 
 class GenderFilterFragment (
-    private val gender: Set<String>,
+    private val gender: Set<String?>,
     private val selected: Set<String>,
     private val listener: CharactersFilterListener
 ) : ScopeFragment(R.layout.fragment_filter) {
@@ -21,7 +21,7 @@ class GenderFilterFragment (
 
     companion object {
         fun newInstance(
-            gender: Set<String>,
+            gender: Set<String?>,
             selected: Set<String> = emptySet(),
             listener: CharactersFilterListener
         ): GenderFilterFragment {
@@ -46,7 +46,7 @@ class GenderFilterFragment (
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = FilterAdapter(gender, selected, true, listener)
+            adapter = FilterAdapter(gender as Set<String>, selected, true, listener)
         }
     }
 
