@@ -8,7 +8,8 @@
     <string name="character_species">Species :</string>
     <string name="unknown">Unknown</string>
     <string name="filter">Filter</string>
-    <string name="myResourcesFiltersGender">Gender</string>
-    <string name="myResourcesFiltersStatus">Status</string>
-    <string name="myResourcesFiltersButton">SEE RESULTS (%s)</string>
+    <string name="filtersGender">Gender</string>
+    <string name="filtersStatus">Status</string>
+    <string name="filtersButton">SEE RESULTS (%s)</string>
+    <string name="resetFiltersButton">RESET ALL FILTERS</string>
 </resources>

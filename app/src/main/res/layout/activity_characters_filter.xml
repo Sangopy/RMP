@@ -47,6 +47,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/filterTabs" />
+    <Button
+        android:id="@+id/reset_filters_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="@string/resetFiltersButton"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/seeResultsButton"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/seeResultsButton"

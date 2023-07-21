@@ -10,15 +10,18 @@ import kotlinx.coroutines.runBlocking
 
 class CharactersViewModel(private val charactersRepository: CharactersRepository) : ViewModel() {
 
-    private var characters = ArrayList<CharacterItems>()
+    var characters = ArrayList<CharacterItems>()
     val characterDetails = MutableLiveData<CharacterDetailsItems>()
     val charactersList = MutableLiveData<List<CharacterItems>>()
 
     var genderFilter = mutableSetOf<String>()
     var statusFilter = mutableSetOf<String>()
-    val filterResults = MutableLiveData<List<CharacterItems>>()
+    val filterResults = MutableLiveData(listOf<CharacterItems?>())
     var gender: Set<String?> = setOf()
     var status: Set<String?> = setOf()
+
+    val isFilterApplied: Boolean
+        get() = genderFilter.isNotEmpty() || statusFilter.isNotEmpty()
 
     val filteredResultsNumber = MutableLiveData(0)
 
@@ -111,6 +114,12 @@ class CharactersViewModel(private val charactersRepository: CharactersRepository
 
             }
         }
+    }
+
+    fun reset() {
+        genderFilter.clear()
+        statusFilter.clear()
+        updateFilterResults()
     }
 
 

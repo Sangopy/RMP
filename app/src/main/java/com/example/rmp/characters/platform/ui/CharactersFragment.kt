@@ -50,8 +50,7 @@ class CharactersFragment(@LayoutRes layoutResId: Int = R.layout.fragment_charact
             binding.charactersProgressBar.visibility = View.GONE
             binding.charactersRecyclerView.layoutManager = LinearLayoutManager(activity)
             binding.charactersRecyclerView.adapter =
-                context?.let { it1 -> CharactersAdapter(it, it1, this) }
-        }
+                CharactersAdapter(it, requireContext(), this) }
 
         viewModel.charactersList.observe(viewLifecycleOwner){
             binding.charactersRecyclerView.apply {

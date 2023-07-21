@@ -12,7 +12,7 @@ import com.example.rmp.databinding.RowCharacterBinding
 import com.squareup.picasso.Picasso
 
 class CharactersAdapter(
-    private var charactersList: List<CharacterItems>,
+    private var charactersList: List<CharacterItems?>,
     private var context: Context,
     private val characterListener: OnCharacterClickListener
 ) : RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder>() {
@@ -24,7 +24,7 @@ class CharactersAdapter(
     }
 
     override fun onBindViewHolder(holder: CharactersViewHolder, position: Int) {
-        return holder.bind(charactersList[position])
+        return holder.bind(charactersList[position]!!)
     }
 
     override fun getItemCount(): Int {

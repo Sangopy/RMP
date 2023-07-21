@@ -38,9 +38,14 @@ class MainActivity : AppCompatActivity() {
                     val filterStatus =
                         result.data?.getStringArrayListExtra(FILTER_STATUS) ?: emptyList<String>()
 
-                    val filteredCharacters: List<CharacterItems> = (filteredList?.let {
-                        Gson().fromJson(it, Array<CharacterItems>::class.java).toList()
-                    } ?: charactersViewModel.charactersList) as List<CharacterItems>
+
+                    val filteredCharacters = filteredList?.let {
+                        Gson().fromJson(
+                            filteredList,
+                            Array<CharacterItems?>::class.java
+                        ).toList()
+                    } ?: charactersViewModel.charactersList.value
+
                     charactersViewModel.filterResults.value = filteredCharacters
                     charactersViewModel.genderFilter = filterGender.toMutableSet()
                     charactersViewModel.statusFilter = filterStatus.toMutableSet()
@@ -58,7 +63,8 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.filter, menu)
         val filterAction =
             menu.findItem(R.id.action_filter)
-        filterAction.isVisible = supportFragmentManager.findFragmentById(R.id.container) is CharactersFragment
+        filterAction.isVisible =
+            supportFragmentManager.findFragmentById(R.id.container) is CharactersFragment
         return true
     }
 
@@ -85,7 +91,6 @@ class MainActivity : AppCompatActivity() {
         }
         return retValue
     }
-
 
 
 }
