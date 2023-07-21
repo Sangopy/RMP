@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="20dp">
+
+    <TextView
+        android:id="@+id/characterField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:fontFamily="@font/opensansbold"
+        android:paddingEnd="30dp"
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorSecondary"
+        tools:text="Name :" />
+
+    <TextView
+        android:id="@+id/characterDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:fontFamily="@font/opensansbold"
+        android:textColor="@color/colorSecondaryVariant"
+        tools:text="Rick Sanchez" />
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.RMP" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.RMP.NoActionBar.SplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.RMP</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
+        <item name="windowSplashScreenBackground">@color/white</item>
+
+    </style>
+
+    <style name="TutorialTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">#b1b1b1</item>
+    </style>
+    <style name="FilterTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/colorSecondary</item>
+        <item name="tabIndicatorHeight">5dp</item>
+        <item name="tabPaddingStart">5dp</item>
+        <item name="tabPaddingEnd">5dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/TutorialTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/colorSecondary</item>
+        <item name="tabGravity">center</item>
+
+
+    </style>
+
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/round_button</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/opensansbold</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:elevation">8dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+</resources>

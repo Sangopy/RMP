@@ -1,0 +1,11 @@
+query CharactersListQuery {
+    characters {
+        results {
+            id
+            name
+            species
+            gender
+            image
+        }
+    }
+}

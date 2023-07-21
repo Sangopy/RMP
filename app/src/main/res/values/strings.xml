@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RMP</string>
+    <string name="characters_title">Characters</string>
+    <string name="character_name">Name :</string>
+    <string name="character_type">Type :</string>
+    <string name="character_status">Status :</string>
+    <string name="character_gender">Gender :</string>
+    <string name="character_species">Species :</string>
+    <string name="unknown">Unknown</string>
+    <string name="filter">Filter</string>
+    <string name="myResourcesFiltersGender">Gender</string>
+    <string name="myResourcesFiltersSpacies">Spacies</string>
+    <string name="myResourcesFiltersButton">SEE RESULTS (%s)</string>
+</resources>
