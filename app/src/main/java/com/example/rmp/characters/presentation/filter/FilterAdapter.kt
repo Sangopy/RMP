@@ -1,4 +1,4 @@
-package com.example.rmp.characters.presentation
+package com.example.rmp.characters.presentation.filter
 
 import android.view.LayoutInflater
 import android.view.View

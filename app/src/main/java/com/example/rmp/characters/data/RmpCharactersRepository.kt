@@ -4,8 +4,8 @@ import com.apollographql.apollo3.ApolloClient
 import com.example.CharacterDetailsQuery
 import com.example.CharactersListQuery
 import com.example.rmp.characters.domain.CharactersRepository
-import com.example.rmp.characters.presentation.CharacterDetailsItems
-import com.example.rmp.characters.presentation.CharacterItems
+import com.example.rmp.characters.presentation.Character.CharacterDetailsItems
+import com.example.rmp.characters.presentation.Character.CharacterItems
 
 open class RmpCharactersRepository: CharactersRepository {
 

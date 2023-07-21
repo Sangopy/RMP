@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rmp.R
-import com.example.rmp.characters.presentation.CharacterDetailsItems
-import com.example.rmp.characters.presentation.CharacterFieldItem
+import com.example.rmp.characters.presentation.Character.CharacterDetailsItems
+import com.example.rmp.characters.presentation.Character.CharacterFieldItem
 import com.example.rmp.databinding.CharacterDetailsFragmentDialogBinding
 import com.squareup.picasso.Picasso
 

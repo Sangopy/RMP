@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.rmp.R
-import com.example.rmp.characters.presentation.CharactersViewModel
-import com.example.rmp.characters.presentation.GenderFilterFragment
-import com.example.rmp.characters.presentation.StatusFilterFragment
+import com.example.rmp.characters.presentation.Character.CharactersViewModel
+import com.example.rmp.characters.presentation.filter.GenderFilterFragment
+import com.example.rmp.characters.presentation.filter.StatusFilterFragment
 import com.example.rmp.databinding.ActivityCharactersFilterBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson

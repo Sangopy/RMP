@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.rmp.R
-import com.example.rmp.characters.presentation.CharacterItems
+import com.example.rmp.characters.presentation.Character.CharacterItems
 import com.example.rmp.databinding.RowCharacterBinding
 import com.squareup.picasso.Picasso
 

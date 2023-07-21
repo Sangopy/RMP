@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rmp.R
-import com.example.rmp.characters.presentation.CharactersViewModel
+import com.example.rmp.characters.presentation.Character.CharactersViewModel
 import com.example.rmp.databinding.FragmentCharactersBinding
 import org.koin.androidx.scope.ScopeFragment
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel

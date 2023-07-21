@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rmp.R
-import com.example.rmp.characters.presentation.CharacterFieldItem
+import com.example.rmp.characters.presentation.Character.CharacterFieldItem
 import com.example.rmp.databinding.RowCharacterDetailsBinding
 
 class CharacterDetailsAdapter(private var characterDetails: ArrayList<CharacterFieldItem>) :

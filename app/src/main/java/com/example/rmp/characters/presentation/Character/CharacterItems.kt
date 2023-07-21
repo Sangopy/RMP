@@ -1,4 +1,4 @@
-package com.example.rmp.characters.presentation
+package com.example.rmp.characters.presentation.Character
 
 data class CharacterItems(
     val id: String?,

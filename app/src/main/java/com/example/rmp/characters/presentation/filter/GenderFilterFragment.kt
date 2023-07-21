@@ -1,4 +1,4 @@
-package com.example.rmp.characters.presentation
+package com.example.rmp.characters.presentation.filter
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,24 +10,24 @@ import com.example.rmp.characters.platform.ui.CharactersFilterListener
 import com.example.rmp.databinding.FragmentFilterBinding
 import org.koin.androidx.scope.ScopeFragment
 
-class StatusFilterFragment private constructor(
-    private val status: Set<String?>,
+class GenderFilterFragment (
+    private val gender: Set<String?>,
     private val selected: Set<String>,
     private val listener: CharactersFilterListener
 ) : ScopeFragment(R.layout.fragment_filter) {
 
-    companion object {
-        fun newInstance(
-            status: Set<String?>,
-            selected: Set<String> = emptySet(),
-            listener: CharactersFilterListener
-        ): StatusFilterFragment {
-            return StatusFilterFragment(status, selected, listener)
-        }
-    }
-
     private var _binding: FragmentFilterBinding? = null
     private val binding get() = _binding!!
+
+    companion object {
+        fun newInstance(
+            gender: Set<String?>,
+            selected: Set<String> = emptySet(),
+            listener: CharactersFilterListener
+        ): GenderFilterFragment {
+            return GenderFilterFragment(gender, selected, listener)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +46,8 @@ class StatusFilterFragment private constructor(
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = FilterAdapter(status as Set<String>, selected, false, listener)
+            adapter = FilterAdapter(gender as Set<String>, selected, true, listener)
         }
     }
+
 }

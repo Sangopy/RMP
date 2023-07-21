@@ -2,6 +2,8 @@ package com.example.rmp.characters.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.rmp.characters.domain.CharactersRepository
+import com.example.rmp.characters.presentation.Character.CharacterItems
+import com.example.rmp.characters.presentation.Character.CharactersViewModel
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Before

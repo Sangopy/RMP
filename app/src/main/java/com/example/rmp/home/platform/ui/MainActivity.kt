@@ -14,8 +14,8 @@ import com.example.rmp.characters.platform.ui.CharactersFilterActivity.Companion
 import com.example.rmp.characters.platform.ui.CharactersFilterActivity.Companion.FILTER_GENDER
 import com.example.rmp.characters.platform.ui.CharactersFilterActivity.Companion.FILTER_STATUS
 import com.example.rmp.characters.platform.ui.CharactersFragment
-import com.example.rmp.characters.presentation.CharacterItems
-import com.example.rmp.characters.presentation.CharactersViewModel
+import com.example.rmp.characters.presentation.Character.CharacterItems
+import com.example.rmp.characters.presentation.Character.CharactersViewModel
 import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
