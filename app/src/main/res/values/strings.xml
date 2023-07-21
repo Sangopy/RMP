@@ -9,6 +9,6 @@
     <string name="unknown">Unknown</string>
     <string name="filter">Filter</string>
     <string name="myResourcesFiltersGender">Gender</string>
-    <string name="myResourcesFiltersSpacies">Spacies</string>
+    <string name="myResourcesFiltersStatus">Status</string>
     <string name="myResourcesFiltersButton">SEE RESULTS (%s)</string>
 </resources>

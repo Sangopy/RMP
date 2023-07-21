@@ -9,6 +9,7 @@ fun CharactersListQuery.Result.toCharacters(): CharacterItems {
     return CharacterItems(
         id = id,
         name = name,
+        status = status,
         species = species,
         gender = gender,
         image = image

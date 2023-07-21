@@ -10,19 +10,19 @@ import com.example.rmp.characters.platform.ui.CharactersFilterListener
 import com.example.rmp.databinding.FragmentFilterBinding
 import org.koin.androidx.scope.ScopeFragment
 
-class SpaciesFilterFragment private constructor(
-    private val spacies: Set<String?>,
+class StatusFilterFragment private constructor(
+    private val status: Set<String?>,
     private val selected: Set<String>,
     private val listener: CharactersFilterListener
 ) : ScopeFragment(R.layout.fragment_filter) {
 
     companion object {
         fun newInstance(
-            spacies: Set<String?>,
+            status: Set<String?>,
             selected: Set<String> = emptySet(),
             listener: CharactersFilterListener
-        ): SpaciesFilterFragment {
-            return SpaciesFilterFragment(spacies, selected, listener)
+        ): StatusFilterFragment {
+            return StatusFilterFragment(status, selected, listener)
         }
     }
 
@@ -46,7 +46,7 @@ class SpaciesFilterFragment private constructor(
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = FilterAdapter(spacies as Set<String>, selected, false, listener)
+            adapter = FilterAdapter(status as Set<String>, selected, false, listener)
         }
     }
 }

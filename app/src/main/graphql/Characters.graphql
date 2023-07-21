@@ -4,6 +4,7 @@ query CharactersListQuery {
             id
             name
             species
+            status
             gender
             image
         }

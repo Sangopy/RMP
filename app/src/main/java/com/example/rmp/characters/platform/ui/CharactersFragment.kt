@@ -10,7 +10,7 @@ import com.example.rmp.R
 import com.example.rmp.characters.presentation.CharactersViewModel
 import com.example.rmp.databinding.FragmentCharactersBinding
 import org.koin.androidx.scope.ScopeFragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class CharactersFragment(@LayoutRes layoutResId: Int = R.layout.fragment_characters) :
     ScopeFragment(layoutResId), OnCharacterClickListener {
@@ -21,7 +21,7 @@ class CharactersFragment(@LayoutRes layoutResId: Int = R.layout.fragment_charact
 
     private var _binding: FragmentCharactersBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: CharactersViewModel by viewModel()
+    private val viewModel: CharactersViewModel by sharedViewModel()
 
 
     override fun onCreateView(
@@ -37,6 +37,7 @@ class CharactersFragment(@LayoutRes layoutResId: Int = R.layout.fragment_charact
         super.onViewCreated(view, savedInstanceState)
         subscribe()
         viewModel.getCharactersList()
+
     }
 
     override fun onDestroyView() {
@@ -45,11 +46,24 @@ class CharactersFragment(@LayoutRes layoutResId: Int = R.layout.fragment_charact
     }
 
     private fun subscribe() {
-        viewModel.charactersList.observe(viewLifecycleOwner) {
+        viewModel.filterResults.observe(viewLifecycleOwner) {
             binding.charactersProgressBar.visibility = View.GONE
             binding.charactersRecyclerView.layoutManager = LinearLayoutManager(activity)
             binding.charactersRecyclerView.adapter =
                 context?.let { it1 -> CharactersAdapter(it, it1, this) }
+        }
+
+        viewModel.charactersList.observe(viewLifecycleOwner){
+            binding.charactersRecyclerView.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = viewModel.charactersList.value?.let {
+                    CharactersAdapter(
+                        it,
+                        context,
+                        this@CharactersFragment
+                    )
+                }
+            }
         }
 
         viewModel.characterDetails.observe(viewLifecycleOwner) {

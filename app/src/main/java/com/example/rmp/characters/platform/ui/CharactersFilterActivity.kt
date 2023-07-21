@@ -7,11 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.rmp.R
-import com.example.rmp.characters.presentation.CharactersFilterViewModel
+import com.example.rmp.characters.presentation.CharactersViewModel
 import com.example.rmp.characters.presentation.GenderFilterFragment
-import com.example.rmp.characters.presentation.SpaciesFilterFragment
+import com.example.rmp.characters.presentation.StatusFilterFragment
 import com.example.rmp.databinding.ActivityCharactersFilterBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -25,14 +26,14 @@ class CharactersFilterActivity : AppCompatActivity(), CharactersFilterListener {
 
     private lateinit var binding : ActivityCharactersFilterBinding
 
-    private val viewModel: CharactersFilterViewModel by viewModel()
+    private val viewModel: CharactersViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCharactersFilterBinding.inflate(layoutInflater)
         viewModel.genderFilter =
             intent.extras?.getStringArrayList(FILTER_GENDER)?.toMutableSet() ?: mutableSetOf()
-        viewModel.spaciesFilter =
+        viewModel.statusFilter =
             intent.extras?.getStringArrayList(FILTER_STATUS)?.toMutableSet() ?: mutableSetOf()
         viewModel.updateFilterResults()
         setContentView(binding.root)
@@ -45,13 +46,13 @@ class CharactersFilterActivity : AppCompatActivity(), CharactersFilterListener {
     }
 
     private fun finishWithResult(reset: Boolean = false) {
-        //val gson = Gson()
+        val gson = Gson()
         val intent = Intent()
         if (!reset) {
-           // intent.putExtra(FILTERED_RESULTS, gson.toJson(viewModel.filterResults.value))
+            intent.putExtra(FILTERED_RESULTS, gson.toJson(viewModel.filterResults.value))
         }
         intent.putStringArrayListExtra(FILTER_GENDER, ArrayList(viewModel.genderFilter))
-        intent.putStringArrayListExtra(FILTER_STATUS, ArrayList(viewModel.spaciesFilter))
+        intent.putStringArrayListExtra(FILTER_STATUS, ArrayList(viewModel.statusFilter))
         setResult(RESULT_OK, intent)
         finish()
     }
@@ -72,7 +73,7 @@ class CharactersFilterActivity : AppCompatActivity(), CharactersFilterListener {
         TabLayoutMediator(binding.filterTabs, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = getString(R.string.myResourcesFiltersGender)
-                else -> tab.text = getString(R.string.myResourcesFiltersSpacies)
+                else -> tab.text = getString(R.string.myResourcesFiltersStatus)
             }
         }.attach()
     }
@@ -81,8 +82,8 @@ class CharactersFilterActivity : AppCompatActivity(), CharactersFilterListener {
         viewModel.updateGenderFilter(gender, checked)
     }
 
-    override fun onSpaciesFilterUpdate(spacies: String, checked: Boolean) {
-        viewModel.updateSpaciesFilter(spacies, checked)
+    override fun onStatusFilterUpdate(status: String, checked: Boolean) {
+        viewModel.updateStatusFilter(status, checked)
     }
 
     private inner class FilterPagerAdapter(activity: FragmentActivity) :
@@ -90,15 +91,16 @@ class CharactersFilterActivity : AppCompatActivity(), CharactersFilterListener {
         override fun getItemCount() = 2
 
         override fun createFragment(position: Int) = when (position) {
+
             0 -> GenderFilterFragment.newInstance(
-                viewModel.gender,
+                viewModel.getGenderList(),
                 viewModel.genderFilter,
                 this@CharactersFilterActivity
             )
 
-            else -> SpaciesFilterFragment.newInstance(
-                viewModel.spacies,
-                viewModel.spaciesFilter,
+            else -> StatusFilterFragment.newInstance(
+                viewModel.getStatusList(),
+                viewModel.statusFilter,
                 this@CharactersFilterActivity
             )
         }
@@ -108,5 +110,5 @@ class CharactersFilterActivity : AppCompatActivity(), CharactersFilterListener {
 
 interface CharactersFilterListener {
     fun onGenderFilterUpdate(gender: String, checked: Boolean)
-    fun onSpaciesFilterUpdate(spacies: String, checked: Boolean)
+    fun onStatusFilterUpdate(status: String, checked: Boolean)
 }

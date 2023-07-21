@@ -11,14 +11,17 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.rmp.R
 import com.example.rmp.characters.platform.ui.CharactersFilterActivity
 import com.example.rmp.characters.platform.ui.CharactersFilterActivity.Companion.FILTERED_RESULTS
+import com.example.rmp.characters.platform.ui.CharactersFilterActivity.Companion.FILTER_GENDER
+import com.example.rmp.characters.platform.ui.CharactersFilterActivity.Companion.FILTER_STATUS
 import com.example.rmp.characters.platform.ui.CharactersFragment
-import com.example.rmp.characters.presentation.CharactersFilterViewModel
+import com.example.rmp.characters.presentation.CharacterItems
 import com.example.rmp.characters.presentation.CharactersViewModel
+import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val charactersFilterViewModel: CharactersFilterViewModel by viewModel()
+    private val charactersViewModel: CharactersViewModel by viewModel()
     private lateinit var startForResult: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,12 +34,16 @@ class MainActivity : AppCompatActivity() {
                 if (result.resultCode == RESULT_OK) {
                     val filteredList = result.data?.getStringExtra(FILTERED_RESULTS)
                     val filterGender =
-                        result.data?.getStringArrayListExtra("FILTER_GENDER") ?: emptyList<String>()
-                    val filterSpacies =
-                        result.data?.getStringArrayListExtra("FILTER_SPACIES") ?: emptyList<String>()
+                        result.data?.getStringArrayListExtra(FILTER_GENDER) ?: emptyList<String>()
+                    val filterStatus =
+                        result.data?.getStringArrayListExtra(FILTER_STATUS) ?: emptyList<String>()
 
-                    charactersFilterViewModel.genderFilter = filterGender.toMutableSet()
-                    charactersFilterViewModel.spaciesFilter = filterSpacies.toMutableSet()
+                    val filteredCharacters: List<CharacterItems> = (filteredList?.let {
+                        Gson().fromJson(it, Array<CharacterItems>::class.java).toList()
+                    } ?: charactersViewModel.charactersList) as List<CharacterItems>
+                    charactersViewModel.filterResults.value = filteredCharacters
+                    charactersViewModel.genderFilter = filterGender.toMutableSet()
+                    charactersViewModel.statusFilter = filterStatus.toMutableSet()
                 }
             }
 
@@ -61,12 +68,12 @@ class MainActivity : AppCompatActivity() {
             R.id.action_filter -> {
                 val intent = Intent(this, CharactersFilterActivity::class.java)
                 intent.putStringArrayListExtra(
-                    "FILTER_GENDER",
-                    ArrayList(charactersFilterViewModel.genderFilter)
+                    FILTER_GENDER,
+                    ArrayList(charactersViewModel.genderFilter)
                 )
                 intent.putStringArrayListExtra(
-                    "FILTER_SPACIES",
-                    ArrayList(charactersFilterViewModel.spaciesFilter)
+                    FILTER_STATUS,
+                    ArrayList(charactersViewModel.statusFilter)
                 )
                 startForResult.launch(intent)
             }

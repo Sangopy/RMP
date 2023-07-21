@@ -80,6 +80,7 @@ dependencies {
     api ("io.insert-koin:koin-android:3.3.2")
     api ("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
     api ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    api ("com.google.code.gson:gson:2.9.1")
 
     testImplementation("junit:junit:4.13.2")
 

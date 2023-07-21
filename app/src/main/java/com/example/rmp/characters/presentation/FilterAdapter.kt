@@ -28,7 +28,6 @@ class FilterAdapter(
 
     override fun onBindViewHolder(holder: FilterViewHolder, position: Int) {
         holder.apply {
-            val item =  sortedItems.elementAt(position)
             binding.checkbox.text =
                 sortedItems.elementAt(position)
             binding.checkbox.tag = sortedItems.elementAt(position)
@@ -40,7 +39,7 @@ class FilterAdapter(
                         (it as CheckBox).isChecked
                     )
                 } else {
-                    listener.onSpaciesFilterUpdate(
+                    listener.onStatusFilterUpdate(
                         sortedItems.elementAt(position),
                         (it as CheckBox).isChecked
                     )
